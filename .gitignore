@@ -1,0 +1,7 @@
+*.zip
+venv/
+terraform.tfstate
+.terraform
+.idea
+.DS_Store
+*.backup
