@@ -7,11 +7,11 @@ sys.path.insert(0, base_dir)
 
 def handler(event, context):
     environment = os.getenv('ENVIRONMENT', 'test')
-    system_code = os.getenv('SYSTEM_CODE', 'fidelity_demo')
+    system_code = os.getenv('SYSTEM_CODE', 'devops_demo')
 
 
     return {'statusCode': 200,
-            'body': '{ "result": "FidelityDemo" }',
+            'body': '{ "result": "DevopsDemo" }',
             'headers': {'Content-Type': 'application/json'}}
 
 if __name__ == "__main__":

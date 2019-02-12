@@ -9,7 +9,7 @@ resource "aws_lambda_function" "lambda_function" {
 
   # The bucket name as created earlier with "aws s3api create-bucket"
   s3_bucket = "${var.s3_bucket}"
-  s3_key = "fidelity-demo/${var.package_name}"
+  s3_key = "${var.service_name}/${var.package_name}"
 
   # "main" is the filename within the zip file (index.js) and "handler"
   # is the name of the property under which the handler function was
