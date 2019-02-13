@@ -7,6 +7,10 @@ variable "description" {
   default = ""
 }
 
+variable "service_name" {
+  description = "(Required) Unique service name for the Lambda function"
+}
+
 variable "created_by" {
   description = "(Optional) Name of person who created the resource"
 }

@@ -10,6 +10,6 @@ variable "description" {
   description = "(Optional) Description of API gateway"
 }
 
-variable "lambda_invoke_arn" {
-  description = "(Required) ARN of Lambda to associate with gateway"
+variable "environment" {
+  description = "(Required) Name of environment"
 }

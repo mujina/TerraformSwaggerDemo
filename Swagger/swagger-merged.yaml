@@ -1,0 +1,15 @@
+info: {
+  title: Fidelity Demo, version: '1.0'}
+paths:
+  /devops:
+    get:
+      description: Devops Demo Lambda
+      x-amazon-apigateway-integration: {httpMethod: POST, passthroughBehavior: when_no_match,
+        type: aws_proxy, uri: 'arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${account_id}:function:DevopsDemoLambda${environment}/invocations'}
+  /fidelity:
+    get:
+      description: Fidelity Demo Lambda
+      x-amazon-apigateway-integration: {httpMethod: POST, passthroughBehavior: when_no_match,
+        type: aws_proxy, uri: 'arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${account_id}:function:FidelityDemoLambda${environment}/invocations'}
+schemes: [https]
+swagger: '2.0'

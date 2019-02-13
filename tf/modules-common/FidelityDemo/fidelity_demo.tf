@@ -18,26 +18,44 @@ variable "service_name" {}
 
 module "fidelity_demo_lambda" {
   source = "../tf_aws_lambda"
-  name = "${var.service_name}Lambda${var.environment}"
+  name = "FidelityDemoLambda${var.environment}"
   s3_bucket = "${var.s3_bucket}"
-  lambda_role_name = "${var.service_name}LambdaRole"
+  lambda_role_name = "FidelityDemoLambdaRole"
   description = "Terraform Provisioning of Lambda function with Swagger demo for ${var.environment}"
   vpc_id = "${data.aws_vpc.selected.id}"
   audience = "${var.audience}"
   created_by = "${var.created_by}"
-  memory_size = "${var.memory_size}"
+  service_name = "FidelityDemo"
 }
 
-module "fidelity_demo_api_gateway" {
+module "devops_demo_lambda" {
+  source = "../tf_aws_lambda"
+  name = "DevopsDemoLambda${var.environment}"
+  s3_bucket = "${var.s3_bucket}"
+  lambda_role_name = "DevopsDemoLambdaRole"
+  description = "Terraform Provisioning of Lambda function with Swagger demo for ${var.environment}"
+  vpc_id = "${data.aws_vpc.selected.id}"
+  audience = "${var.audience}"
+  created_by = "${var.created_by}"
+  service_name = "DevopsDemo"
+}
+
+module "secure_de_api_gateway" {
   source = "../tf_aws_api_gateway"
-  name = "${var.service_name}APIGateway${var.environment}"
+  name = "SecureDEDemoAPIGateway${var.environment}"
   description = "Terraform Provisioning of API Gateway with Swagger demo for ${var.environment}"
   service_name = "${var.service_name}"
-  lambda_invoke_arn = "${module.fidelity_demo_lambda.lambda_invoke_arn}"
+  environment = "${var.environment}"
 }
 
 module "fidelity_demo_lambda_permission" {
   source = "../tf_aws_lambda_permission"
   lambda_function_arn = "${module.fidelity_demo_lambda.lambda_arn}"
-  source_arn = "${ module.fidelity_demo_api_gateway.api_gateway_execution_arn}/*/*"
+  source_arn = "${ module.secure_de_api_gateway.api_gateway_execution_arn}/*/*"
+}
+
+module "devops_demo_lambda_permission" {
+  source = "../tf_aws_lambda_permission"
+  lambda_function_arn = "${module.devops_demo_lambda.lambda_arn}"
+  source_arn = "${ module.secure_de_api_gateway.api_gateway_execution_arn}/*/*"
 }
