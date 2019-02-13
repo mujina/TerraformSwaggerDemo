@@ -48,6 +48,11 @@ module "secure_de_api_gateway" {
   environment = "${var.environment}"
 }
 
+# The source arn in the following Lambda permission stanzas denotes the
+# base API Gateway Execution ARN (which includes the stage) and wildcards
+# for the VERB and the PATH.
+# arn:aws:execute-api:${region}:${account-id}:gfiqcicdv3/${stage}/${verb}/${path}
+
 module "fidelity_demo_lambda_permission" {
   source = "../tf_aws_lambda_permission"
   lambda_function_arn = "${module.fidelity_demo_lambda.lambda_arn}"
