@@ -25,7 +25,6 @@ module "fidelity_demo_lambda" {
   vpc_id = "${data.aws_vpc.selected.id}"
   audience = "${var.audience}"
   created_by = "${var.created_by}"
-  memory_size = "${var.memory_size}"
   service_name = "FidelityDemo"
 }
 
@@ -38,7 +37,6 @@ module "devops_demo_lambda" {
   vpc_id = "${data.aws_vpc.selected.id}"
   audience = "${var.audience}"
   created_by = "${var.created_by}"
-  memory_size = "${var.memory_size}"
   service_name = "DevopsDemo"
 }
 

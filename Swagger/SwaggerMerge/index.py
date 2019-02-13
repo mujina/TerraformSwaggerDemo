@@ -11,7 +11,7 @@ class SwaggerMerger:
         self.debug = True
         self.global_config = {}
         self.environment = os.getenv("ENVIRONMENT")\
-            or fatal('API Key not defined')
+            or fatal('Environment not defined')
 
     def get_check(self, check_name):
         return self.client.get_check(check_name)
@@ -42,9 +42,8 @@ class SwaggerMerger:
                 except yaml.YAMLError as e:
                     self.fatal(e)
 
-            print(local_yaml)
-            for key in local_yaml.keys():
-                self.global_yaml['paths'][key] = local_yaml[key]
+            for key in local_yaml['paths'].keys():
+                self.global_yaml['paths'][key] = local_yaml['paths'][key]
 
         print(yaml.dump(self.global_yaml))
 

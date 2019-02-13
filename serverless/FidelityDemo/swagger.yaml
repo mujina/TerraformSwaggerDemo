@@ -1,8 +1,9 @@
-"/fidelity":
-  get:
-    description: "Fidelity Demo Lambda"
-    x-amazon-apigateway-integration:
-      uri: arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${account_id}:function:FidelityDemoLambda${environment}/invocations
-      passthroughBehavior: "when_no_match"
-      httpMethod: "POST"
-      type: "aws_proxy"
+paths:
+  "/fidelity":
+    get:
+      description: "Fidelity Demo Lambda"
+      x-amazon-apigateway-integration:
+        uri: arn:aws:apigateway:${aws_region}:lambda:path/2015-03-31/functions/arn:aws:lambda:${aws_region}:${account_id}:function:FidelityDemoLambda${environment}/invocations
+        passthroughBehavior: "when_no_match"
+        httpMethod: "POST"
+        type: "aws_proxy"
